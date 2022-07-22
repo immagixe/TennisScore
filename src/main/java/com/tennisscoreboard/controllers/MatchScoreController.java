@@ -3,6 +3,7 @@ package com.tennisscoreboard.controllers;
 import com.tennisscoreboard.dao.MatchScoreDAO;
 import com.tennisscoreboard.models.Match;
 import com.tennisscoreboard.models.Player;
+import com.tennisscoreboard.services.MatchScoreCalculationService;
 import com.tennisscoreboard.services.OngoingMatchesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,14 @@ public class MatchScoreController {
 
     private final MatchScoreDAO matchScoreDAO;
     private final OngoingMatchesService ongoingMatchesService;
+    private final MatchScoreCalculationService matchScoreCalculationService;
 
-    public MatchScoreController(MatchScoreDAO matchScoreDAO, OngoingMatchesService ongoingMatchesService) {
+    public MatchScoreController(MatchScoreDAO matchScoreDAO,
+                                OngoingMatchesService ongoingMatchesService,
+                                MatchScoreCalculationService matchScoreCalculationService) {
         this.matchScoreDAO = matchScoreDAO;
         this.ongoingMatchesService = ongoingMatchesService;
+        this.matchScoreCalculationService = matchScoreCalculationService;
     }
 
     @GetMapping("/new-match")
@@ -30,10 +35,11 @@ public class MatchScoreController {
     }
 
     @PostMapping("/new-match")
-    public String createPlayersAndStartMatch(@ModelAttribute("player1") @Valid Player player1, BindingResult bindingResult1,
-                                             @ModelAttribute("player2") @Valid Player player2, BindingResult bindingResult2,
-                                             OngoingMatchesService ongoingMatchesService,
-                                             Model model) {
+    public String createPlayersAndStartMatch(@ModelAttribute("player1") @Valid Player player1,
+                                             BindingResult bindingResult1,
+                                             @ModelAttribute("player2") @Valid Player player2,
+                                             BindingResult bindingResult2,
+                                             OngoingMatchesService ongoingMatchesService, Model model) {
         if (bindingResult1.hasErrors() || bindingResult2.hasErrors()) {
             return "new_match";
         }
@@ -47,11 +53,8 @@ public class MatchScoreController {
         model.addAttribute("uuid", uuid);
         Match currentMatch = ongoingMatchesService.getCurrentMatch(uuid);
 
-        Player player1 = ongoingMatchesService.getPlayer(currentMatch, OngoingMatchesService.PlayerNumber.PLAYER1);
-        Player player2 = ongoingMatchesService.getPlayer(currentMatch, OngoingMatchesService.PlayerNumber.PLAYER2);
-
-        model.addAttribute("player1", player1);
-        model.addAttribute("player2", player2);
+        model.addAttribute("player1", currentMatch.getPlayer1());
+        model.addAttribute("player2", currentMatch.getPlayer2());
 
         model.addAttribute("setPlayer1", currentMatch.getScore().getSetPlayer1());
         model.addAttribute("setPlayer2", currentMatch.getScore().getSetPlayer2());
@@ -59,7 +62,6 @@ public class MatchScoreController {
         model.addAttribute("gamePlayer2", currentMatch.getScore().getGamePlayer2());
         model.addAttribute("pointsPlayer1", currentMatch.getScore().getPointsPlayer1());
         model.addAttribute("pointsPlayer2", currentMatch.getScore().getPointsPlayer2());
-
 
 
 //        System.out.println(ongoingMatchesService.getCurrentMatch(uuid).getPlayer1().getName());
@@ -71,6 +73,9 @@ public class MatchScoreController {
     public String updateScoreBoard(@RequestParam("uuid") String uuid,
                                    @RequestParam("playerIdWinPoint") int playerIdWinPoint,
                                    Model model) {
+        Match currentMatch = ongoingMatchesService.getCurrentMatch(uuid);
+
+        matchScoreCalculationService.winPoint(currentMatch, playerIdWinPoint);
 
 
         System.out.println("Name " + playerIdWinPoint);

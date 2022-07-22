@@ -4,7 +4,6 @@ import com.tennisscoreboard.dao.MatchScoreDAO;
 import com.tennisscoreboard.models.Match;
 import com.tennisscoreboard.models.Player;
 import com.tennisscoreboard.models.Score;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -17,13 +16,8 @@ public class OngoingMatchesService {
 
     private static final Map<String, Match> matchesMap = new ConcurrentHashMap<>();
 
-    public enum PlayerNumber {
-        PLAYER1, PLAYER2
-    }
-
     public OngoingMatchesService() {
     }
-
 
     public String matchInitialization(MatchScoreDAO matchScoreDAO, Player player1, Player player2) {
         Match match = new Match();
@@ -35,10 +29,6 @@ public class OngoingMatchesService {
         String uuid = UUID.randomUUID().toString();
         matchesMap.put(uuid, match);
         return uuid;
-    }
-
-    public Player getPlayer(Match currentMatch, PlayerNumber playerNumber) {
-        return playerNumber == PlayerNumber.PLAYER1 ? currentMatch.getPlayer1() : currentMatch.getPlayer2();
     }
 
     public Match getCurrentMatch(String uuid) {
