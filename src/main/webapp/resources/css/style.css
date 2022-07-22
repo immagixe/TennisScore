@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.first {
+    background-image: linear-gradient(134deg, #7066fa, #7066fa, #000e83);
+    padding-top: 100px;
+}
+
+.container {
+    width: 1200px;
+    height: 752px;
+    margin: 0 auto;
+}
+
+.first .first_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.first .first_wrapper .first_item {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 50px;
+}
+
+.title {
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.first .first_wrapper .first_item .players {
+    display: block;
+    margin: 25px auto;
+    width: 400px;
+    padding: 15px 30px 30px 30px;
+    background-color: rgba(16,19,30,0.4);
+    border-radius: 15px;
+}
+
+.first .first_wrapper .first_item .enter_names {
+    margin-top: 35px;
+    color: #ffae20;
+    font-size: 40px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.first .first_wrapper .first_item .players .forms .text_players {
+    margin-top: 15px;
+    color: #ffae20;
+    font-family: Greycliffcf, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.first .first_wrapper .first_item .players .forms .text-field {
+    margin-top: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.first .first_wrapper .first_item .players .forms .text-field .text-field_input {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.first .first_btn {
+    display: block;
+    margin: 30px auto;
+    box-shadow: inset -4px -4px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    padding: 12px 35px 12px 35px;
+    font-family: Greycliffcf, sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    background-color: #ffae20;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.first .second_btn {
+    cursor: pointer;
+    align-items: center;
+    width: 160px;
+    height: 70px;
+    margin: 10px auto;
+    padding: 12px 35px 12px 35px;
+    background-color: #6fff0f;
+    color: #060f3f;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-family: Greycliffcf, sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+input {
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.first .first_wrapper .first_item .tennisplayers2 {
+    border-radius: 30px;
+}
+
+.first .first_wrapper .first_item .match_board {
+    display: flex;
+    width: 900px;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.score_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 70px;
+    margin: 10px auto;
+    padding: 12px 35px 12px 35px;
+    background-color: #ffcf17;
+    color: #060f3f;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.score_block2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 70px;
+    margin: 10px auto;
+    padding: 12px 35px 12px 35px;
+    background-color: #fce3a9;
+    color: #060f3f;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.score_block_text {
+    text-transform: uppercase;
+    font-family: Greycliffcf, sans-serif;
+    font-size: 20px;
+}
+
+.first .first_btn_newgame {
+    display: block;
+    margin: 250px auto;
+    box-shadow: inset -4px -4px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    padding: 12px 35px 12px 35px;
+    font-family: Greycliffcf, sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    background-color: #ffae20;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
