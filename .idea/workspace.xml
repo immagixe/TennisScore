@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Add TableScoreTable classes">
+    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Add TableScoreTable version 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/OngoingMatchesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/OngoingMatchesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/match_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/match_score.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +216,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658485508438</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add TableScoreTable classes">
+      <created>1658496412715</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658496412715</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add TableScoreTable version 2">
+      <created>1658498985802</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658498985802</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +239,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="258e10d6-e166-4950-b5d0-5489926a198b">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -235,10 +271,16 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="258e10d6-e166-4950-b5d0-5489926a198b" value="TOOL_WINDOW" />
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update TableScoreTable classes" />
     <MESSAGE value="Add TableScoreTable classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add TableScoreTable classes" />
+    <MESSAGE value="Add TableScoreTable version 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add TableScoreTable version 2" />
   </component>
 </project>

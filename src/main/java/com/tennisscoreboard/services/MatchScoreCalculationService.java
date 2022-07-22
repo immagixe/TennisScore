@@ -4,8 +4,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MatchScoreCalculationService {
+    public MatchScoreCalculationService() {
+    }
 
-//    Через
+
+
+    //    Через
 //            OngoingMatchesService
 //    получает экземпляр класса
 //            Match

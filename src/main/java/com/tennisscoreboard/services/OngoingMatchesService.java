@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class OngoingMatchesService {
 
-    private static Map<String, Match> matchesMap = new ConcurrentHashMap<>();
+    private static final Map<String, Match> matchesMap = new ConcurrentHashMap<>();
 
     public enum PlayerNumber {
         PLAYER1, PLAYER2

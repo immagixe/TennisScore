@@ -43,16 +43,15 @@ public class MatchScoreController {
 
     @GetMapping("/match-score")
     public String showMatchScoreTable(@RequestParam(value = "uuid", required = false) String uuid,
-                                      @RequestParam(value = "id", required = false) String id,
-
                                       Model model) {
         model.addAttribute("uuid", uuid);
         Match currentMatch = ongoingMatchesService.getCurrentMatch(uuid);
 
-        model.addAttribute("namePlayer1",
-                ongoingMatchesService.getPlayer(currentMatch, OngoingMatchesService.PlayerNumber.PLAYER1).getName());
-        model.addAttribute("namePlayer2",
-                ongoingMatchesService.getPlayer(currentMatch, OngoingMatchesService.PlayerNumber.PLAYER2).getName());
+        Player player1 = ongoingMatchesService.getPlayer(currentMatch, OngoingMatchesService.PlayerNumber.PLAYER1);
+        Player player2 = ongoingMatchesService.getPlayer(currentMatch, OngoingMatchesService.PlayerNumber.PLAYER2);
+
+        model.addAttribute("player1", player1);
+        model.addAttribute("player2", player2);
 
         model.addAttribute("setPlayer1", currentMatch.getScore().getSetPlayer1());
         model.addAttribute("setPlayer2", currentMatch.getScore().getSetPlayer2());
@@ -62,29 +61,19 @@ public class MatchScoreController {
         model.addAttribute("pointsPlayer2", currentMatch.getScore().getPointsPlayer2());
 
 
-        ongoingMatchesService.getCurrentMatch(uuid);
 
-        System.out.println(ongoingMatchesService.getCurrentMatch(uuid).getPlayer1().getName());
-        Player playerX = new Player();
-        playerX.setId(88);
-        playerX.setName("Albert");
-
-        model.addAttribute("player1", playerX);
-        model.addAttribute("player2", new Player());
-
-
-//        System.out.println(matchesMap.size());
-        System.out.println("uuid: " + model.getAttribute("uuid"));
+//        System.out.println(ongoingMatchesService.getCurrentMatch(uuid).getPlayer1().getName());
+//        System.out.println("uuid: " + model.getAttribute("uuid"));
         return "match_score";
     }
 
     @PostMapping("/match-score")
     public String updateScoreBoard(@RequestParam("uuid") String uuid,
-                                   @ModelAttribute("player1") Player player1,
+                                   @RequestParam("playerIdWinPoint") int playerIdWinPoint,
                                    Model model) {
 
 
-        System.out.println("Name " + player1.getName());
+        System.out.println("Name " + playerIdWinPoint);
         model.addAttribute("uuid", uuid);
 
         System.out.println("POST ZAPROS2");
