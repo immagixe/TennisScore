@@ -7,16 +7,17 @@ import com.tennisscoreboard.models.Score;
 import org.springframework.stereotype.Component;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class OngoingMatchesService {
+public class MatchesService {
 
     private static final Map<String, Match> matchesMap = new ConcurrentHashMap<>();
 
-    public OngoingMatchesService() {
+    public MatchesService() {
     }
 
     public String matchInitialization(MatchScoreDAO matchScoreDAO, Player player1, Player player2) {
@@ -30,7 +31,22 @@ public class OngoingMatchesService {
         return uuid;
     }
 
+    public void addFinishedMatchToDataBase(MatchScoreDAO matchScoreDAO, Match currentMatch, int playerIdWinPoint, String uuid) {
+        Player winner = matchScoreDAO.getPlayerById(playerIdWinPoint);
+        currentMatch.setWinner(winner);
+        matchScoreDAO.saveMatch(currentMatch);
+        matchesMap.remove(uuid);
+    }
+
     public Match getCurrentMatch(String uuid) {
         return matchesMap.get(uuid);
+    }
+
+    public List<Match> getAllMatches(MatchScoreDAO matchScoreDAO) {
+        return matchScoreDAO.getAllMatches();
+    }
+
+    public int getSize() {
+        return matchesMap.size();
     }
 }

@@ -3,9 +3,8 @@ package com.tennisscoreboard.controllers;
 import com.tennisscoreboard.dao.MatchScoreDAO;
 import com.tennisscoreboard.models.Match;
 import com.tennisscoreboard.models.Player;
-import com.tennisscoreboard.services.FinishedMatchesPersistenceService;
 import com.tennisscoreboard.services.MatchScoreCalculationService;
-import com.tennisscoreboard.services.OngoingMatchesService;
+import com.tennisscoreboard.services.MatchesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,15 +16,14 @@ import javax.validation.Valid;
 public class MatchScoreController {
 
     private final MatchScoreDAO matchScoreDAO;
-    private final OngoingMatchesService ongoingMatchesService;
+    private final MatchesService matchesService;
     private final MatchScoreCalculationService matchScoreCalculationService;
 
-
     public MatchScoreController(MatchScoreDAO matchScoreDAO,
-                                OngoingMatchesService ongoingMatchesService,
+                                MatchesService matchesService,
                                 MatchScoreCalculationService matchScoreCalculationService) {
         this.matchScoreDAO = matchScoreDAO;
-        this.ongoingMatchesService = ongoingMatchesService;
+        this.matchesService = matchesService;
         this.matchScoreCalculationService = matchScoreCalculationService;
     }
 
@@ -39,11 +37,11 @@ public class MatchScoreController {
     @PostMapping("/new-match")
     public String createPlayersAndStartMatch(@ModelAttribute("player1") @Valid Player player1, BindingResult bindingResult1,
                                              @ModelAttribute("player2") @Valid Player player2, BindingResult bindingResult2,
-                                             OngoingMatchesService ongoingMatchesService, Model model) {
+                                             MatchesService matchesService, Model model) {
         if (bindingResult1.hasErrors() || bindingResult2.hasErrors()) {
             return "new_match";
         }
-        model.addAttribute("uuid", ongoingMatchesService.matchInitialization(matchScoreDAO, player1, player2));
+        model.addAttribute("uuid", matchesService.matchInitialization(matchScoreDAO, player1, player2));
         return "redirect:/match-score";
     }
 
@@ -51,7 +49,8 @@ public class MatchScoreController {
     public String showMatchScoreTable(@RequestParam(value = "uuid", required = false) String uuid,
                                       Model model) {
         model.addAttribute("uuid", uuid);
-        model.addAttribute("currentMatch", ongoingMatchesService.getCurrentMatch(uuid));
+        model.addAttribute("currentMatch", matchesService.getCurrentMatch(uuid));
+
         return "match_score";
     }
 
@@ -59,20 +58,31 @@ public class MatchScoreController {
     public String updateScoreBoard(@RequestParam("uuid") String uuid,
                                    @RequestParam("playerIdWinPoint") int playerIdWinPoint,
                                    Model model) {
-        Match currentMatch = ongoingMatchesService.getCurrentMatch(uuid);
+        Match currentMatch = matchesService.getCurrentMatch(uuid);
         matchScoreCalculationService.winPoint(currentMatch, playerIdWinPoint);
 
-//        if (currentMatch.getScore().isMatchEnd()) {
-//            finishedMatchesPersistenceService.addFinishedMatchToDataBase(matchScoreDAO, currentMatch, playerIdWinPoint);
-//        }
+        if (currentMatch.getScore().isMatchEnd()) {
+            matchesService.addFinishedMatchToDataBase(matchScoreDAO, currentMatch, playerIdWinPoint, uuid);
+        }
+
+
+        System.out.println(matchesService.getSize());
 
 
         System.out.println("Name " + playerIdWinPoint);
         model.addAttribute("uuid", uuid);
 
-        System.out.println("POST ZAPROS2");
+
 
 
         return "redirect:/match-score";
+    }
+
+    @GetMapping("/matches")
+    public String showMatches(Model model) {
+        matchesService.getAllMatches(matchScoreDAO);
+        model.addAttribute("matches", matchesService.getAllMatches(matchScoreDAO));
+        System.out.println("PRIVEt");
+        return "matches";
     }
 }

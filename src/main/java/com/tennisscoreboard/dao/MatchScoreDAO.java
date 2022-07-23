@@ -34,6 +34,7 @@ public class MatchScoreDAO {
             return player;
         }
     }
+
     @Transactional(readOnly = true)
     public Player getPlayerById(int playerId) {
         Session session = sessionFactory.getCurrentSession();
@@ -50,5 +51,13 @@ public class MatchScoreDAO {
     public void saveMatch(Match match) {
         Session session = sessionFactory.getCurrentSession();
         session.save(match);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Match> getAllMatches() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM Match";
+        List<Match> matches = session.createQuery(hql).getResultList();
+        return matches;
     }
 }
