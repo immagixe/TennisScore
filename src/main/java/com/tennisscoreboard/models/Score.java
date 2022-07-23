@@ -1,136 +1,91 @@
 package com.tennisscoreboard.models;
 
+import java.util.*;
+
 public class Score {
 
-    private int setPlayer1;
-    private int setPlayer2;
-    private int gamePlayer1;
-    private int gamePlayer2;
-    private int pointsPlayer1;
-    private int pointsPlayer2;
+    private static int playerNumber;
+    private final Map<Integer, List<Integer>> playersAndMatchScore;
+    private final int countSetsToWin;
     private boolean matchEnd;
 
     public Score() {
-        this.setPlayer1 = 0;
-        this.setPlayer2 = 0;
-        this.gamePlayer1 = 0;
-        this.gamePlayer2 = 0;
-        this.pointsPlayer1 = 0;
-        this.pointsPlayer2 = 0;
+        playerNumber = 0;
+        this.playersAndMatchScore = new HashMap<>();
+        countSetsToWin = 2;
         matchEnd = false;
     }
 
-    // Player 1 Setters
+    public void initializationPlayersAndScore() {
+        List<Integer> pointsGamesSets = new ArrayList<>();
+        Collections.addAll(pointsGamesSets, 0, 0, 0);
+        playersAndMatchScore.put(++playerNumber, pointsGamesSets);
+    }
 
-    public void winPointsPlayer1() {
+    public void winPointsPlayer(int winPlayerNumber, int losePlayerNumber) {
+        int pointsWinPlayer = playersAndMatchScore.get(winPlayerNumber).get(0);
+        int pointsLosePlayer = playersAndMatchScore.get(losePlayerNumber).get(0);
+
         if (!matchEnd) {
-            if (pointsPlayer1 < 30) {
-                pointsPlayer1 += 15;
-            } else if (pointsPlayer1 == 30) {
-                pointsPlayer1 += 10;
-            } else if (pointsPlayer1 >= 40) {
-                pointsPlayer1 += 10;
-                checkWinGamePlayer1(pointsPlayer1, pointsPlayer2);
+            if (pointsWinPlayer < 30) {
+                pointsWinPlayer += 15;
+                playersAndMatchScore.get(winPlayerNumber).set(0, pointsWinPlayer);
+            } else if (pointsWinPlayer == 30) {
+                pointsWinPlayer += 10;
+                playersAndMatchScore.get(winPlayerNumber).set(0, pointsWinPlayer);
+            } else if (pointsWinPlayer >= 40) {
+                pointsWinPlayer += 10;
+                playersAndMatchScore.get(winPlayerNumber).set(0, pointsWinPlayer);
+                if ((pointsWinPlayer - pointsLosePlayer) > 10) {
+                    playersAndMatchScore.get(winPlayerNumber).set(0, 0);
+                    playersAndMatchScore.get(losePlayerNumber).set(0, 0);
+                    winGamePlayer(winPlayerNumber, losePlayerNumber);
+                }
             }
         }
     }
 
-    private void checkWinGamePlayer1(int pointsCurrentPlayer, int pointsAnotherPlayer) {
-        if ((pointsCurrentPlayer - pointsAnotherPlayer) > 10) {
-            pointsPlayer1 = 0;
-            pointsPlayer2 = 0;
-            winGamePlayer1(gamePlayer1, gamePlayer2);
-        }
-    }
+    private void winGamePlayer(int winPlayerNumber, int losePlayerNumber) {
+        int gamesOfWinPlayer = playersAndMatchScore.get(winPlayerNumber).get(1);
+        int gamesOfLosePlayer = playersAndMatchScore.get(losePlayerNumber).get(1);
 
-    private void winGamePlayer1(int gameCurrentPlayer, int gameAnotherPlayer) {
-        if (gameCurrentPlayer >= 5 && (gameCurrentPlayer - gameAnotherPlayer) >= 1) {
-            gamePlayer1 = 0;
-            gamePlayer2 = 0;
-            winSetPlayer1(setPlayer1);
+        if (gamesOfWinPlayer >= 5 && (gamesOfWinPlayer - gamesOfLosePlayer) >= 1) {
+            playersAndMatchScore.get(winPlayerNumber).set(1, 0);
+            playersAndMatchScore.get(losePlayerNumber).set(1, 0);
+            winSetPlayer(winPlayerNumber);
         } else {
-            gamePlayer1++;
+            gamesOfWinPlayer++;
+            playersAndMatchScore.get(winPlayerNumber).set(1, gamesOfWinPlayer);
         }
     }
 
-    private void winSetPlayer1(int gameCurrentPlayer) {
-        if (gameCurrentPlayer == 1) {
-            setPlayer1++;
+    private void winSetPlayer(int winPlayerNumber) {
+        int setsOfWinPlayer = playersAndMatchScore.get(winPlayerNumber).get(2);
+
+        if (setsOfWinPlayer == countSetsToWin-1) {
+            setsOfWinPlayer++;
+            playersAndMatchScore.get(winPlayerNumber).set(2, setsOfWinPlayer);
             matchEnd = true;
         } else {
-            setPlayer1++;
+            setsOfWinPlayer++;
+            playersAndMatchScore.get(winPlayerNumber).set(2, setsOfWinPlayer);
         }
     }
 
-    // Player 2 Setters
-
-    public void winPointsPlayer2() {
-        if (!matchEnd) {
-            if (pointsPlayer2 < 30) {
-                pointsPlayer2 += 15;
-            } else if (pointsPlayer2 == 30) {
-                pointsPlayer2 += 10;
-            } else if (pointsPlayer2 >= 40) {
-                pointsPlayer2 += 10;
-                checkWinGamePlayer2(pointsPlayer2, pointsPlayer1);
-            }
-        }
+    public int getPointsPlayer(int playerNumber) {
+        return playersAndMatchScore.get(playerNumber).get(0);
     }
 
-    private void checkWinGamePlayer2(int pointsCurrentPlayer, int pointsAnotherPlayer) {
-        if ((pointsCurrentPlayer - pointsAnotherPlayer) > 10) {
-            pointsPlayer1 = 0;
-            pointsPlayer2 = 0;
-            winGamePlayer2(gamePlayer2, gamePlayer1);
-        }
+    public int getGamePlayer(int playerNumber) {
+        return playersAndMatchScore.get(playerNumber).get(1);
     }
 
-    private void winGamePlayer2(int gameCurrentPlayer, int gameAnotherPlayer) {
-        if (gameCurrentPlayer >= 5 && (gameCurrentPlayer - gameAnotherPlayer) >= 1) {
-            gamePlayer1 = 0;
-            gamePlayer2 = 0;
-            winSetPlayer2(setPlayer2);
-        } else {
-            gamePlayer2++;
-        }
-    }
-
-    private void winSetPlayer2(int gameCurrentPlayer) {
-        if (gameCurrentPlayer == 1) {
-            setPlayer2++;
-            matchEnd = true;
-        } else {
-            setPlayer2++;
-        }
-    }
-
-    // Getters
-
-    public int getPointsPlayer1() {
-        return pointsPlayer1;
-    }
-
-    public int getGamePlayer1() {
-        return gamePlayer1;
-    }
-
-    public int getSetPlayer1() {
-        return setPlayer1;
-    }
-
-    public int getPointsPlayer2() {
-        return pointsPlayer2;
-    }
-
-    public int getGamePlayer2() {
-        return gamePlayer2;
-    }
-
-    public int getSetPlayer2() {
-        return setPlayer2;
+    public int getSetPlayer(int playerNumber) {
+        return playersAndMatchScore.get(playerNumber).get(2);
     }
 
     public boolean isMatchEnd() {
         return matchEnd;
     }
 }
+

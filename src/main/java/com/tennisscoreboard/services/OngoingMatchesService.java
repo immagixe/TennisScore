@@ -25,7 +25,6 @@ public class OngoingMatchesService {
         match.setScore(score);
         match.setPlayer1(matchScoreDAO.findByNameOrCreateIfDoesNotExist(player1));
         match.setPlayer2(matchScoreDAO.findByNameOrCreateIfDoesNotExist(player2));
-
         String uuid = UUID.randomUUID().toString();
         matchesMap.put(uuid, match);
         return uuid;

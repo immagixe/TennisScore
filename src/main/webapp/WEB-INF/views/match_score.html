@@ -33,39 +33,39 @@
                 </div>
                 <div class="match_board">
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${player1.getName()}">Name</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getPlayer1().getName()}">Name</h3>
                     </div>
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${setPlayer1}">Set</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getScore().getSetPlayer(1)}">Set</h3>
                     </div>
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${gamePlayer1}">Game</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getScore().getGamePlayer(1)}">Game</h3>
                     </div>
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${pointsPlayer1}">Points</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getScore().getPointsPlayer(1)}">Points</h3>
                     </div>
                     <div class="score_block2">
                         <form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}">
-                            <button type="submit" th:value="${player1.getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
+                            <button type="submit" th:value="${currentMatch.getPlayer1().getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
                         </form>
                     </div>
                 </div>
                 <div class="match_board">
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${player2.getName()}">Name</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getPlayer2().getName()}">Name</h3>
                     </div>
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${setPlayer2}">Set</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getScore().getSetPlayer(2)}">Set</h3>
                     </div>
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${gamePlayer2}">Game</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getScore().getGamePlayer(2)}">Game</h3>
                     </div>
                     <div class="score_block2">
-                        <h3 class="score_block_text" th:text="${pointsPlayer2}">Points</h3>
+                        <h3 class="score_block_text" th:text="${currentMatch.getScore().getPointsPlayer(2)}">Points</h3>
                     </div>
                     <div class="score_block2">
                         <form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}">
-                            <button type="submit" th:value="${player2.getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
+                            <button type="submit" th:value="${currentMatch.getPlayer2().getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
                         </form>
                     </div>
                 </div>
@@ -78,6 +78,3 @@
 </section>
 </body>
 </html>
-
-
-
