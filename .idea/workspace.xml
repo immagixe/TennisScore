@@ -9,15 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Update TableScoreTable: version 3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/FinishedMatchesPersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/FinishedMatchesPersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/MatchScoreCalculationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/MatchScoreCalculationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/OngoingMatchesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/OngoingMatchesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/match_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/match_score.html" afterDir="false" />
+    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Fix bugs">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/dao/MatchScoreDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/dao/MatchScoreDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658522865144</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix bugs">
+      <created>1658583571206</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658583571206</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +309,8 @@
     <MESSAGE value="Add TableScoreTable version 2" />
     <MESSAGE value="Update TableScoreTable: version 2" />
     <MESSAGE value="Update TableScoreTable: version 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update TableScoreTable: version 3" />
+    <MESSAGE value="Fixed bugs" />
+    <MESSAGE value="Fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs" />
   </component>
 </project>
