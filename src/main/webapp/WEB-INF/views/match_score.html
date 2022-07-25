@@ -45,9 +45,18 @@
                         <h3 class="score_block_text" th:text="${currentMatch.getScore().getPointsPlayer(1)}">Points</h3>
                     </div>
                     <div class="score_block2">
-                        <form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}">
-                            <button type="submit" th:value="${currentMatch.getPlayer1().getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
-                        </form>
+                        <!-- IF -->
+                        <div th:if="${currentMatch.getScore().isMatchEnd()}">
+                            <form th:method="GET" th:action="@{/new-match}">
+                                <button type="submit" name="playerIdWinPoint" class="second_btn">New Match</button>
+                            </form>
+                        </div>
+                        <!-- ELSE -->
+                        <div th:unless="${currentMatch.getScore().isMatchEnd()}">
+                            <form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}">
+                                <button type="submit" th:value="${currentMatch.getPlayer1().getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="match_board">
@@ -64,9 +73,18 @@
                         <h3 class="score_block_text" th:text="${currentMatch.getScore().getPointsPlayer(2)}">Points</h3>
                     </div>
                     <div class="score_block2">
-                        <form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}">
-                            <button type="submit" th:value="${currentMatch.getPlayer2().getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
-                        </form>
+                        <!-- IF -->
+                        <div th:if="${currentMatch.getScore().isMatchEnd()}">
+                            <form th:method="GET" th:action="@{/matches}">
+                                <button type="submit" name="playerIdWinPoint" class="second_btn">View Matches</button>
+                            </form>
+                        </div>
+                        <!-- ELSE -->
+                        <div th:unless="${currentMatch.getScore().isMatchEnd()}">
+                            <form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}">
+                                <button type="submit" th:value="${currentMatch.getPlayer2().getId()}" name="playerIdWinPoint" class="second_btn">Win</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <form th:method="GET" th:action="@{/matches}">

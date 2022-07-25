@@ -21,7 +21,6 @@
 					<div class="players">
 						<div class="forms">
 							<form th:method="POST" th:action="@{/new-match}">
-<!-- 								<form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}"> -->
 								<div class="text_players">Player 1</div>
 								<input type="text" th:value="${player1.name}" name="player1" id="1"/>
 								<div style="color:red" th:if="${#fields.hasErrors('player1.name')}" th:errors="*{player1.name}">Name1 error</div>
@@ -39,68 +38,3 @@
 	</section>
 </body>
 </html>
-
-<!--
-<form th:method="POST" th:action="@{/match-score}">
-	<label for="1">Enter name: </label>
-	<input type="text" th:value="${player1.name}" name="player1" id="1"/>
-	<br/>
-	<label for="2">Enter name: </label>
-	<input type="text" th:value="${player2.name}" name="player2" id="2"/>
-	<br/>
-	<input type="submit" value="Create!"/>
-</form>-->
-
-<!-- <form th:method="POST" th:action="@{/match-score}">
-	<label for="1">Enter name: </label>
-	<input type="text" th:value="${player1.name}" name="player1" id="1"/>
-	<br/>
-	<label for="2">Enter name: </label>
-	<input type="text" th:value="${player2.name}" name="player2" id="2"/>
-	<br/>
-	<input type="submit" value="Create!"/>
-</form> -->
-
-
-<!--
-<div class="first_item">
-	<h1 class="title">Tennis Score Board</h1>
-	<h2 class="enter_names">Enter player names</h2>
-	<div class="players">
-		<div class="forms">
-
-
-
-			<form th:method="POST" th:action="@{/match-score}">
-				<label for="1">Enter name: </label>
-				<input type="text" th:value="${player1.name}" name="player1" id="1"/>
-				<br/>
-				<label for="2">Enter name: </label>
-				<input type="text" th:value="${player2.name}" name="player2" id="2"/>
-				<br/>
-				<input type="submit" value="Create!"/>
-			</form>
-
-
-
-
-
-
-			<div class="text_players">Player 1</div>
-			<div class="text-field">
-				<input class="text-field_input" type="text" name="player" id="1">
-			</div>
-		</div>
-		<div class="forms">
-			<div class="text_players">Player 2</div>
-			<div class="text-field">
-				<input class="text-field_input" type="text" name="player" id="2">
-			</div>
-		</div>
-	</div>
-	<button class="first_btn">Start game</button>
-</div>
-</div>
-</section>
-</body>
-</html>-->

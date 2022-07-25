@@ -50,8 +50,8 @@ public class Score {
         int gamesOfLosePlayer = playersAndMatchScore.get(losePlayerNumber).get(1);
 
         if (gamesOfWinPlayer >= 5 && (gamesOfWinPlayer - gamesOfLosePlayer) >= 1) {
-            playersAndMatchScore.get(winPlayerNumber).set(1, 0);
-            playersAndMatchScore.get(losePlayerNumber).set(1, 0);
+                playersAndMatchScore.get(winPlayerNumber).set(1, 0);
+                playersAndMatchScore.get(losePlayerNumber).set(1, 0);
             winSetPlayer(winPlayerNumber);
         } else {
             gamesOfWinPlayer++;
@@ -62,7 +62,7 @@ public class Score {
     private void winSetPlayer(int winPlayerNumber) {
         int setsOfWinPlayer = playersAndMatchScore.get(winPlayerNumber).get(2);
 
-        if (setsOfWinPlayer == countSetsToWin-1) {
+        if (setsOfWinPlayer == countSetsToWin - 1) {
             setsOfWinPlayer++;
             playersAndMatchScore.get(winPlayerNumber).set(2, setsOfWinPlayer);
             matchEnd = true;

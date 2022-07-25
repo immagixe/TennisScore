@@ -55,11 +55,12 @@ public class MatchScoreController {
     }
 
     @PostMapping("/match-score")
-    public String updateScoreBoard(@RequestParam("uuid") String uuid,
-                                   @RequestParam("playerIdWinPoint") int playerIdWinPoint,
+    public String updateScoreBoard(@RequestParam(value = "uuid", required = false) String uuid,
+                                   @RequestParam(value ="playerIdWinPoint", required = false) int playerIdWinPoint,
                                    Model model) {
         Match currentMatch = matchesService.getCurrentMatch(uuid);
         matchScoreCalculationService.winPoint(currentMatch, playerIdWinPoint);
+        model.addAttribute("currentMatch", matchesService.getCurrentMatch(uuid));
 
         if (currentMatch.getScore().isMatchEnd()) {
             matchesService.addFinishedMatchToDataBase(matchScoreDAO, currentMatch, playerIdWinPoint, uuid);
@@ -75,13 +76,20 @@ public class MatchScoreController {
 
 
 
-        return "redirect:/match-score";
+        return "match_score";
     }
 
     @GetMapping("/matches")
-    public String showMatches(Model model) {
-        matchesService.getAllMatches(matchScoreDAO);
-        model.addAttribute("matches", matchesService.getAllMatches(matchScoreDAO));
+    public String showMatches(@RequestParam (value = "page", required = false) int pageNumber,
+                                  Model model) {
+
+        model.addAttribute("matches", matchesService.getPageWithMatches(matchScoreDAO, pageNumber));
+
+        model.addAttribute("countPages", matchScoreDAO.getCountPages());
+        model.addAttribute("lastPageNumber", matchScoreDAO.getLastPageNumber());
+
+
+
         System.out.println("PRIVEt");
         return "matches";
     }

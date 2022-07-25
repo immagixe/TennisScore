@@ -42,8 +42,10 @@ public class MatchesService {
         return matchesMap.get(uuid);
     }
 
-    public List<Match> getAllMatches(MatchScoreDAO matchScoreDAO) {
-        return matchScoreDAO.getAllMatches();
+    public List<Match> getPageWithMatches(MatchScoreDAO matchScoreDAO, int pageNumber) {
+        int pageSize = 10;
+        int firstResult = ((pageNumber - 1) * pageSize);
+        return matchScoreDAO.getMatches(firstResult, pageSize);
     }
 
     public int getSize() {

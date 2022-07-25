@@ -28,8 +28,6 @@ public class Match {
     @Transient
     private Score score;
 
-
-
     public Match() {
     }
 
