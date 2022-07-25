@@ -55,17 +55,9 @@ public class MatchScoreDAO {
     }
 
     @Transactional(readOnly = true)
-    public List<Match> getAllMatches1() {
-        Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM Match";
-        List<Match> matches = session.createQuery(hql).getResultList();
-        return matches;
-    }
-
-    @Transactional(readOnly = true)
     public List<Match> getMatches(int firstResult, int pageSize) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Match");
+        Query query = session.createQuery("FROM Match ORDER BY id DESC");
         query.setFirstResult(firstResult);
         query.setMaxResults(pageSize);
         List<Match> matches = query.list();
@@ -73,31 +65,11 @@ public class MatchScoreDAO {
     }
 
     @Transactional
-    public Long getCountPages() {
+    public int getLastPageNumber(int pageSize) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "SELECT COUNT(*) FROM Match";
         Query countQuery = session.createQuery(hql);
-        Long countResults = (Long) countQuery.uniqueResult();
-        return countResults;
-    }
-
-    @Transactional
-    public int getLastPageNumber() {
-        int pageSize = 10;
-        return (int) (getCountPages() / pageSize) + 1;
+        Long countMatchesInDB = (Long) countQuery.uniqueResult();
+        return (int) ((countMatchesInDB / pageSize) + 1);
     }
 }
-
-//        Session session = sessionFactory.getCurrentSession();
-//        int pageSize = 10;
-//        String countQ = "SELECT COUNT(*) FROM Match";
-//        Query countQuery = session.createQuery(countQ);
-//        Long countResults = (Long) countQuery.uniqueResult();
-//        int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-//
-//        Query selectQuery = session.createQuery("FROM Match");
-//        selectQuery.setFirstResult((lastPageNumber - 1) * pageSize);
-//        selectQuery.setMaxResults(pageSize);
-//        List<Match> matchList = selectQuery.list();
-//
-//        return matchList;

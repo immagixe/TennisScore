@@ -31,24 +31,17 @@ public class MatchesService {
         return uuid;
     }
 
-    public void addFinishedMatchToDataBase(MatchScoreDAO matchScoreDAO, Match currentMatch, int playerIdWinPoint, String uuid) {
-        Player winner = matchScoreDAO.getPlayerById(playerIdWinPoint);
-        currentMatch.setWinner(winner);
-        matchScoreDAO.saveMatch(currentMatch);
-        matchesMap.remove(uuid);
-    }
-
     public Match getCurrentMatch(String uuid) {
         return matchesMap.get(uuid);
     }
 
-    public List<Match> getPageWithMatches(MatchScoreDAO matchScoreDAO, int pageNumber) {
-        int pageSize = 10;
-        int firstResult = ((pageNumber - 1) * pageSize);
-        return matchScoreDAO.getMatches(firstResult, pageSize);
+    public void addFinishedMatchToDataBase(MatchScoreDAO matchScoreDAO, Match currentMatch, int playerIdWinPoint) {
+        Player winner = matchScoreDAO.getPlayerById(playerIdWinPoint);
+        currentMatch.setWinner(winner);
+        matchScoreDAO.saveMatch(currentMatch);
     }
 
-    public int getSize() {
-        return matchesMap.size();
+    public void removeFinishedMatchFromMatchesMap(String uuid) {
+        matchesMap.remove(uuid);
     }
 }

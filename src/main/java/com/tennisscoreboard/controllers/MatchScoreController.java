@@ -3,6 +3,7 @@ package com.tennisscoreboard.controllers;
 import com.tennisscoreboard.dao.MatchScoreDAO;
 import com.tennisscoreboard.models.Match;
 import com.tennisscoreboard.models.Player;
+import com.tennisscoreboard.services.MatchDisplayService;
 import com.tennisscoreboard.services.MatchScoreCalculationService;
 import com.tennisscoreboard.services.MatchesService;
 import org.springframework.stereotype.Controller;
@@ -18,13 +19,16 @@ public class MatchScoreController {
     private final MatchScoreDAO matchScoreDAO;
     private final MatchesService matchesService;
     private final MatchScoreCalculationService matchScoreCalculationService;
+    private final MatchDisplayService matchDisplayService;
 
     public MatchScoreController(MatchScoreDAO matchScoreDAO,
                                 MatchesService matchesService,
-                                MatchScoreCalculationService matchScoreCalculationService) {
+                                MatchScoreCalculationService matchScoreCalculationService,
+                                MatchDisplayService matchDisplayService) {
         this.matchScoreDAO = matchScoreDAO;
         this.matchesService = matchesService;
         this.matchScoreCalculationService = matchScoreCalculationService;
+        this.matchDisplayService = matchDisplayService;
     }
 
     @GetMapping("/new-match")
@@ -35,8 +39,10 @@ public class MatchScoreController {
     }
 
     @PostMapping("/new-match")
-    public String createPlayersAndStartMatch(@ModelAttribute("player1") @Valid Player player1, BindingResult bindingResult1,
-                                             @ModelAttribute("player2") @Valid Player player2, BindingResult bindingResult2,
+    public String createPlayersAndStartMatch(@ModelAttribute("player1") @Valid Player player1,
+                                             BindingResult bindingResult1,
+                                             @ModelAttribute("player2") @Valid Player player2,
+                                             BindingResult bindingResult2,
                                              MatchesService matchesService, Model model) {
         if (bindingResult1.hasErrors() || bindingResult2.hasErrors()) {
             return "new_match";
@@ -59,22 +65,15 @@ public class MatchScoreController {
                                    @RequestParam(value ="playerIdWinPoint", required = false) int playerIdWinPoint,
                                    Model model) {
         Match currentMatch = matchesService.getCurrentMatch(uuid);
+
         matchScoreCalculationService.winPoint(currentMatch, playerIdWinPoint);
+        model.addAttribute("uuid", uuid);
         model.addAttribute("currentMatch", matchesService.getCurrentMatch(uuid));
 
         if (currentMatch.getScore().isMatchEnd()) {
-            matchesService.addFinishedMatchToDataBase(matchScoreDAO, currentMatch, playerIdWinPoint, uuid);
+            matchesService.addFinishedMatchToDataBase(matchScoreDAO, currentMatch, playerIdWinPoint);
+            matchesService.removeFinishedMatchFromMatchesMap(uuid);
         }
-
-
-        System.out.println(matchesService.getSize());
-
-
-        System.out.println("Name " + playerIdWinPoint);
-        model.addAttribute("uuid", uuid);
-
-
-
 
         return "match_score";
     }
@@ -82,15 +81,10 @@ public class MatchScoreController {
     @GetMapping("/matches")
     public String showMatches(@RequestParam (value = "page", required = false) int pageNumber,
                                   Model model) {
+        model.addAttribute("matches", matchDisplayService.getPageWithMatches(matchScoreDAO, pageNumber));
+        model.addAttribute("currentPage", pageNumber);
+        model.addAttribute("lastPageNumber", matchDisplayService.getLastPageNumber(matchScoreDAO));
 
-        model.addAttribute("matches", matchesService.getPageWithMatches(matchScoreDAO, pageNumber));
-
-        model.addAttribute("countPages", matchScoreDAO.getCountPages());
-        model.addAttribute("lastPageNumber", matchScoreDAO.getLastPageNumber());
-
-
-
-        System.out.println("PRIVEt");
         return "matches";
     }
 }
