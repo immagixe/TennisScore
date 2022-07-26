@@ -16,15 +16,24 @@
 				<h2 class="enter_names">History of matches</h2>
 				<div class="players">
 					<div class="forms">
-							<!-- 								<form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}"> -->
-							<div class="text_players">Player 1</div>
-							<div class="text_players" th:each="match : ${matches}">
-								<div th:text="${match.id
-								+ ', ' + match.getPlayer1().getName()
-								+ ', ' + match.getPlayer2().getName()
-								+ ', ' + match.getWinner().getName()}">match</div>
-							</div>
 
+							<div class="text_players">Player 1</div>
+								<table class="table">
+									<thead>
+									<tr>
+										<th>Player 1</th>
+										<th>Player 2</th>
+										<th>Winner</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="match : ${matches}">
+										<td th:text="${match.getPlayer1().getName()}">Player 1</td>
+										<td th:text="${match.getPlayer2().getName()}">Player 2</td>
+										<td th:text="${match.getWinner().getName()}">Winner</td>
+									</tr>
+									</tbody>
+								</table>
 						<div th:if="${lastPageNumber} != 1">
 							<!-- IF -->
 							<div th:if="${currentPage} < ${lastPageNumber}">
@@ -44,9 +53,8 @@
 			</div>
 		</div>
 	</div>
-</section>
-</body>
-</html>
+
+
 
 
 

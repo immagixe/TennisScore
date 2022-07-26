@@ -62,7 +62,7 @@ public class MatchScoreController {
 
     @PostMapping("/match-score")
     public String updateScoreBoard(@RequestParam(value = "uuid", required = false) String uuid,
-                                   @RequestParam(value ="playerIdWinPoint", required = false) int playerIdWinPoint,
+                                   @RequestParam(value = "playerIdWinPoint", required = false) int playerIdWinPoint,
                                    Model model) {
         Match currentMatch = matchesService.getCurrentMatch(uuid);
 
@@ -79,9 +79,24 @@ public class MatchScoreController {
     }
 
     @GetMapping("/matches")
-    public String showMatches(@RequestParam (value = "page", required = false) int pageNumber,
-                                  Model model) {
-        model.addAttribute("matches", matchDisplayService.getPageWithMatches(matchScoreDAO, pageNumber));
+    public String showMatches(@RequestParam(value = "page", required = false) Integer pageNumber,
+                              @RequestParam(value = "playername", required = false) String playerName,
+                              Model model) {
+        if (pageNumber == null) {
+            return "redirect:/matches?page=1";
+        }
+
+        if (playerName == null) {
+            model.addAttribute("matches", matchDisplayService.getPageWithMatches(matchScoreDAO, pageNumber));
+        } else {
+            model.addAttribute("matches", matchDisplayService.getPageWithMatchesWithFilter(matchScoreDAO,
+                    pageNumber, playerName));
+        }
+
+
+//        model.addAttribute("matches", matchDisplayService.getPageWithMatchesWithFilter(matchScoreDAO, pageNumber, playerName));
+
+
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("lastPageNumber", matchDisplayService.getLastPageNumber(matchScoreDAO));
 

@@ -17,12 +17,18 @@ public class MatchDisplayService {
     public MatchDisplayService() {
     }
 
-    public List<Match> getPageWithMatches(MatchScoreDAO matchScoreDAO, int pageNumber) {
-        int firstResult = ((pageNumber - 1) * pageSize);
+    public List<Match> getPageWithMatches(MatchScoreDAO matchScoreDAO, Integer pageNumber) {
+        int firstResult = (pageNumber - 1) * pageSize;
         return matchScoreDAO.getMatches(firstResult, pageSize);
     }
 
-    public int getLastPageNumber (MatchScoreDAO matchScoreDAO) {
+    public List<Match> getPageWithMatchesWithFilter(MatchScoreDAO matchScoreDAO, Integer pageNumber, String playerName) {
+        int firstResult = (pageNumber - 1) * pageSize;
+        return matchScoreDAO.getMatchesByFilterPlayerName(firstResult, pageSize, playerName);
+
+    }
+
+    public int getLastPageNumber(MatchScoreDAO matchScoreDAO) {
         return matchScoreDAO.getLastPageNumber(pageSize);
     }
 }

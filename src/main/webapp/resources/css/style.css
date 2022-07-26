@@ -163,7 +163,7 @@ input {
 
 .first .first_btn_newgame {
     display: block;
-    margin: 250px auto;
+    margin: 50px auto;
     box-shadow: inset -4px -4px 1px rgba(0, 0, 0, 0.5);
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     padding: 12px 35px 12px 35px;
@@ -176,4 +176,36 @@ input {
     cursor: pointer;
     border: 2px solid rgba(0, 0, 0, 0.8);
     border-radius: 10px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 5px solid #fff;
+    border-top: 5px solid #fff;
+    border-bottom: 3px solid #fff;
+    border-collapse: collapse;
+    outline: 3px solid #ffd300;
+    font-size: 15px;
+    background: #fff!important;
+}
+.table th {
+    font-weight: bold;
+    padding: 7px;
+    background: #ffd300;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #ffd300;
+}
+.table td {
+    padding: 7px;
+    border: none;
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    font-size: 15px;
+}
+.table tbody tr:nth-child(even){
+    background: #f8f8f8!important;
 }

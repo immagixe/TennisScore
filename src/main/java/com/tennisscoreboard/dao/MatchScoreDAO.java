@@ -57,12 +57,40 @@ public class MatchScoreDAO {
     @Transactional(readOnly = true)
     public List<Match> getMatches(int firstResult, int pageSize) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Match ORDER BY id DESC");
+        String hql = "FROM Match ORDER BY id DESC";
+        Query query = session.createQuery(hql);
         query.setFirstResult(firstResult);
         query.setMaxResults(pageSize);
         List<Match> matches = query.list();
         return matches;
     }
+
+    //        String hql = "FROM Match m WHERE m.player1 = :name or m.player2 = :name ORDER BY id DESC";
+    @Transactional(readOnly = true)
+    public List<Match> getMatchesByFilterPlayerName(int firstResult, int pageSize, String filterName) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM Match WHERE player1.name= :name or player2.name= :name";
+        Query query = session.createQuery(hql).setParameter("name", filterName);
+        query.setFirstResult(firstResult);
+        query.setMaxResults(pageSize);
+        List<Match> matches = query.list();
+        return matches;
+    }
+
+//    @Transactional
+//    public Player findPlayerByName(String playerName) {
+//        Session session = sessionFactory.getCurrentSession();
+//        String hql = "SELECT m.player1.name, m.player2.name, m.winner.name FROM Match m JOIN Player p ON (p.id = m.winner.id) WHERE m.player1.name = :name";
+//
+//        List<Player> playerList = session.createQuery(hql).setParameter("name", playerName).getResultList();
+//        int countPlayers = playerList.size();
+//        if (countPlayers != 0) {
+//            return playerList.get(0);
+//        } else {
+//            session.save(player);
+//            return player;
+//        }
+//    }
 
     @Transactional
     public int getLastPageNumber(int pageSize) {

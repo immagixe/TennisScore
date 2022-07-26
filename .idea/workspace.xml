@@ -11,11 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Add pagination in Thymeleaf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/config/SpringConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/dao/MatchScoreDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/dao/MatchScoreDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/MatchDisplayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/services/MatchDisplayService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/matches.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/matches.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +205,7 @@
       <workItem from="1658177902677" duration="3451000" />
       <workItem from="1658235057282" duration="26214000" />
       <workItem from="1658318690252" duration="68290000" />
-      <workItem from="1658647196552" duration="25305000" />
+      <workItem from="1658647196552" duration="41159000" />
     </task>
     <task id="LOCAL-00001" summary="Add TableScoreTable classes">
       <created>1658477918123</created>
@@ -290,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658749690808</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add pagination in Thymeleaf">
+      <created>1658752229256</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1658752229256</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,5 +358,16 @@
     <MESSAGE value="Add pagination in hibernate" />
     <MESSAGE value="Add pagination in Thymeleaf" />
     <option name="LAST_COMMIT_MESSAGE" value="Add pagination in Thymeleaf" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/tennisscoreboard/dao/MatchScoreDAO.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
