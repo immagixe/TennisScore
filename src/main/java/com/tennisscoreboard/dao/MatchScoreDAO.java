@@ -67,7 +67,7 @@ public class MatchScoreDAO {
 
     //        String hql = "FROM Match m WHERE m.player1 = :name or m.player2 = :name ORDER BY id DESC";
     @Transactional(readOnly = true)
-    public List<Match> getMatchesByFilterPlayerName(int firstResult, int pageSize, String filterName) {
+    public List<Match> getMatchesFilterByPlayerName(int firstResult, int pageSize, String filterName) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM Match WHERE player1.name= :name or player2.name= :name";
         Query query = session.createQuery(hql).setParameter("name", filterName);
@@ -99,5 +99,14 @@ public class MatchScoreDAO {
         Query countQuery = session.createQuery(hql);
         Long countMatchesInDB = (Long) countQuery.uniqueResult();
         return (int) ((countMatchesInDB / pageSize) + 1);
+    }
+
+    @Transactional
+    public int getLastPageNumberWithFilterByPlayerName(int pageSize, String filterName) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT COUNT(*) FROM Match WHERE player1.name= :name or player2.name= :name";
+        Query countQuery = session.createQuery(hql).setParameter("name", filterName);
+        Long countMatchesInDB = (Long) countQuery.uniqueResult();
+        return (int) ((countMatchesInDB / (pageSize + 1)) + 1);
     }
 }

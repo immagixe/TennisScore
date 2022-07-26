@@ -6,7 +6,7 @@
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Matches</title>
-	<link th:href="@{resources/css/style.css}" rel="stylesheet" />
+	<link th:href="@{resources/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <section class="first">
@@ -16,90 +16,155 @@
 				<h2 class="enter_names">History of matches</h2>
 				<div class="players">
 					<div class="forms">
+						<!-- 						<form th:method="GET" th:action="@{/new-match}"> -->
+						<!-- 							<div class="text_players">Player 1</div> -->
+						<!-- 							<input type="text" th:value="${player1.name}" name="player1" id="1"/> -->
+						<!-- 							<div style="color:red" th:if="${#fields.hasErrors('player1.name')}" th:errors="*{player1.name}">Name1 error</div> -->
+						<!-- 							<div class="text_players">Player 2</div> -->
+						<!-- 							<input type="text" th:value="${player2.name}" name="player2" id="2"/> -->
+						<!-- 							<div style="color:red" th:if="${#fields.hasErrors('player2.name')}" th:errors="*{player2.name}">Name2 error</div> -->
+						<!-- 							<br/> -->
+						<!-- 							<button type="submit" class="first_btn">Start game</button> -->
+						<!-- 						</form> -->
+						<div class="text_players">Player 1</div>
+						<table class="table">
+							<thead>
+							<tr>
+								<th>Player 1</th>
+								<th>Player 2</th>
+								<th>Winner</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="match : ${matches}">
+								<td th:text="${match.getPlayer1().getName()}">Player 1</td>
+								<td th:text="${match.getPlayer2().getName()}">Player 2</td>
+								<td th:text="${match.getWinner().getName()}">Winner</td>
+							</tr>
+							</tbody>
+						</table>
 
-							<div class="text_players">Player 1</div>
-								<table class="table">
-									<thead>
-									<tr>
-										<th>Player 1</th>
-										<th>Player 2</th>
-										<th>Winner</th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr th:each="match : ${matches}">
-										<td th:text="${match.getPlayer1().getName()}">Player 1</td>
-										<td th:text="${match.getPlayer2().getName()}">Player 2</td>
-										<td th:text="${match.getWinner().getName()}">Winner</td>
-									</tr>
-									</tbody>
-								</table>
-						<div th:if="${lastPageNumber} != 1">
-							<!-- IF -->
-							<div th:if="${currentPage} < ${lastPageNumber}">
-								<form th:method="GET" th:action="@{/matches}">
-									<button type="submit" th:value="${currentPage + 1}" name="page" class="second_btn">Next Page</button>
-								</form>
+						<div class="text_players">Player 1</div>
+
+						<div class="forms">
+							<form th:method="GET" th:action="@{/matches}">
+								<input type="text" th:value="${playername}" name="playername" id="1"/>
+								<button type="submit" class="second_btn">Find</button>
+							</form>
+
+
+							<!-- 							<div th:if="${lastPageNumber} > 1"> -->
+							<!-- 								&lt;!&ndash; IF &ndash;&gt; -->
+							<!-- 								<div th:if="${currentPage} < ${lastPageNumber}"> -->
+							<!-- 									<button type="submit" th:value="${currentPage + 1}" name="page" -->
+							<!-- 									        class="second_btn">Next Page -->
+							<!-- 									</button> -->
+							<!-- 								</div> -->
+							<!-- 								&lt;!&ndash; ELSE &ndash;&gt; -->
+							<!-- 								<div th:if="${currentPage} > 1"> -->
+							<!-- 									<button type="submit" th:value="${currentPage - 1}" name="page" -->
+							<!-- 									        class="second_btn">Previous Page -->
+							<!-- 									</button> -->
+							<!-- 								</div> -->
+							<!-- 							</div> -->
+
+
+							<div th:if="${lastPageNumber} > 1">
+								<!-- IF -->
+								<div th:if="${currentPage} < ${lastPageNumber}">
+									<div th:if="${playername} == null">
+										<p><a th:href="@{/matches?page={page}(page=${currentPage + 1})}">TEXT1PAGE</a>
+										</p>
+									</div>
+									<div th:unless="${playername} == null">
+										<a th:href="@{/matches?page={page}&playername={playername}(playername=${playername}, page=${currentPage + 1})}">TEXTPLAYER</a>
+									</div>
+								</div>
+								<!-- ELSE -->
+								<div th:if="${currentPage} > 1">
+									<div th:if="${playername} == null">
+										<p><a th:href="@{/matches?page={page}(page=${currentPage - 1})}">TEXT1PAGE</a>
+										</p>
+									</div>
+									<div th:unless="${playername} == null">
+										<a th:href="@{/matches?page={page}&playername={playername}(playername=${playername}, page=${currentPage - 1})}">TEXTPLAYER</a>
+									</div>
+								</div>
 							</div>
-							<!-- IF -->
-							<div th:if="${currentPage} > 1">
-								<form th:method="GET" th:action="@{/matches}">
-									<button type="submit" th:value="${currentPage - 1}" name="page" class="second_btn">Previous Page</button>
-								</form>
-							</div>
-						</div>
+
+
+<!-- 							<p><a th:href="${playername}">TEXT11</a></p> -->
+<!-- 							<div th:if="${lastPageNumber} > 1"> -->
+<!-- 								&lt;!&ndash; IF &ndash;&gt; -->
+<!-- 								<form th:action="@{/matches?page={page}&playername={playername}(playername=${playername}, page=${currentPage + 1})}"> -->
+<!-- 									<div th:if="${currentPage} < ${lastPageNumber}"> -->
+<!-- 										<button th:href="@{/matches?page={page}&playername={playername}(playername=${playername}, page=${currentPage + 1})}" -->
+<!-- 										        class="second_btn">Next Page!! -->
+<!-- 										</button> -->
+<!-- 									</div> -->
+<!-- 							</div> -->
+<!-- 							</form> -->
+<!-- 							&lt;!&ndash; ELSE &ndash;&gt; -->
+<!-- 							<div th:if="${currentPage} > 1"> -->
+<!-- 								<button type="submit" th:value="${currentPage - 1}" name="page" -->
+<!-- 								        class="second_btn">Previous Page -->
+<!-- 								</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+
+
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
 
 
+	<!-- <!doctype html> -->
+	<!-- <html lang="en" xmlns:th="http://www.thymeleaf.org"> -->
+	<!-- <head> -->
+	<!-- 	<meta charset="UTF-8"> -->
+	<!-- 	<meta name="viewport" -->
+	<!-- 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
+	<!-- 	<meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+	<!-- 	<title>Matches</title> -->
+	<!-- 	<link th:href="@{resources/css/style.css}" rel="stylesheet" /> -->
+	<!-- </head> -->
+	<!-- <body> -->
+	<!-- <section class="first"> -->
+	<!-- 	<div class="container"> -->
+	<!-- 		<div class="first_wrapper"> -->
+	<!-- 			<div class="first_item"> -->
+	<!-- 				<img th:src="@{resources/img/tennisman.png}" alt="tennisman" class="tennisplayers"> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="first_item"> -->
+	<!-- 				<h1 class="title">Tennis Score Board</h1> -->
+	<!-- 				<h2 class="enter_names">Enter player names</h2> -->
+	<!-- 				<div class="players"> -->
+	<!-- 					<div class="forms"> -->
+	<!-- 						&lt;!&ndash; 								<form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}"> &ndash;&gt; -->
+	<!-- 						<div class="text_players">Player 1</div> -->
+	<!-- 						<div th:each="match : ${matches}"> -->
+	<!-- 							<div th:text="${match.id + ', ' + match.getPlayer1().getName()}">match</div> -->
+	<!-- 						</div> -->
 
+	<!-- 						<form th:method="GET" th:action="@{/matches}"> -->
+	<!-- 							<button type="submit" name="page" th:text="${nextPage}" class="first_btn">Next Page</button> -->
+	<!-- 						</form> -->
+	<!-- 						&lt;!&ndash; 						<a th:href="@{/matches?{id}/edit(id=${person.getId()})}">Edit</a> &ndash;&gt; -->
 
+	<!-- 						<form th:method="GET" th:action="@{/people/{id}(id=${person.getId()})}"> -->
+	<!-- 							<input type="submit" value="Delete"/> -->
+	<!-- 						</form> -->
 
-<!-- <!doctype html> -->
-<!-- <html lang="en" xmlns:th="http://www.thymeleaf.org"> -->
-<!-- <head> -->
-<!-- 	<meta charset="UTF-8"> -->
-<!-- 	<meta name="viewport" -->
-<!-- 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
-<!-- 	<meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
-<!-- 	<title>Matches</title> -->
-<!-- 	<link th:href="@{resources/css/style.css}" rel="stylesheet" /> -->
-<!-- </head> -->
-<!-- <body> -->
-<!-- <section class="first"> -->
-<!-- 	<div class="container"> -->
-<!-- 		<div class="first_wrapper"> -->
-<!-- 			<div class="first_item"> -->
-<!-- 				<img th:src="@{resources/img/tennisman.png}" alt="tennisman" class="tennisplayers"> -->
-<!-- 			</div> -->
-<!-- 			<div class="first_item"> -->
-<!-- 				<h1 class="title">Tennis Score Board</h1> -->
-<!-- 				<h2 class="enter_names">Enter player names</h2> -->
-<!-- 				<div class="players"> -->
-<!-- 					<div class="forms"> -->
-<!-- 						&lt;!&ndash; 								<form th:method="POST" th:action="@{/match-score?uuid={uuid}(uuid=${uuid})}"> &ndash;&gt; -->
-<!-- 						<div class="text_players">Player 1</div> -->
-<!-- 						<div th:each="match : ${matches}"> -->
-<!-- 							<div th:text="${match.id + ', ' + match.getPlayer1().getName()}">match</div> -->
-<!-- 						</div> -->
-
-<!-- 						<form th:method="GET" th:action="@{/matches}"> -->
-<!-- 							<button type="submit" name="page" th:text="${nextPage}" class="first_btn">Next Page</button> -->
-<!-- 						</form> -->
-<!-- 						&lt;!&ndash; 						<a th:href="@{/matches?{id}/edit(id=${person.getId()})}">Edit</a> &ndash;&gt; -->
-
-<!-- 						<form th:method="GET" th:action="@{/people/{id}(id=${person.getId()})}"> -->
-<!-- 							<input type="submit" value="Delete"/> -->
-<!-- 						</form> -->
-
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </section> -->
-<!-- </body> -->
-<!-- </html> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
+	<!-- </section> -->
+	<!-- </body> -->
+	<!-- </html> -->

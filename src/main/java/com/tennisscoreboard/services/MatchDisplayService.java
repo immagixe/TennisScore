@@ -2,10 +2,7 @@ package com.tennisscoreboard.services;
 
 import com.tennisscoreboard.dao.MatchScoreDAO;
 import com.tennisscoreboard.models.Match;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,18 +14,21 @@ public class MatchDisplayService {
     public MatchDisplayService() {
     }
 
-    public List<Match> getPageWithMatches(MatchScoreDAO matchScoreDAO, Integer pageNumber) {
+    public List<Match> getPageWithMatches(MatchScoreDAO matchScoreDAO, Integer pageNumber, String playerName) {
         int firstResult = (pageNumber - 1) * pageSize;
-        return matchScoreDAO.getMatches(firstResult, pageSize);
+
+        if (playerName == null) {
+            return matchScoreDAO.getMatches(firstResult, pageSize);
+        } else {
+            return matchScoreDAO.getMatchesFilterByPlayerName(firstResult, pageSize, playerName);
+        }
     }
 
-    public List<Match> getPageWithMatchesWithFilter(MatchScoreDAO matchScoreDAO, Integer pageNumber, String playerName) {
-        int firstResult = (pageNumber - 1) * pageSize;
-        return matchScoreDAO.getMatchesByFilterPlayerName(firstResult, pageSize, playerName);
-
-    }
-
-    public int getLastPageNumber(MatchScoreDAO matchScoreDAO) {
-        return matchScoreDAO.getLastPageNumber(pageSize);
+    public int getLastPageNumber(MatchScoreDAO matchScoreDAO, String playerName) {
+        if (playerName == null) {
+            return matchScoreDAO.getLastPageNumber(pageSize);
+        } else {
+            return matchScoreDAO.getLastPageNumberWithFilterByPlayerName(pageSize, playerName);
+        }
     }
 }

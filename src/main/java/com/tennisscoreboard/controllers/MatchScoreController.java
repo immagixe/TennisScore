@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 public class MatchScoreController {
@@ -82,23 +83,27 @@ public class MatchScoreController {
     public String showMatches(@RequestParam(value = "page", required = false) Integer pageNumber,
                               @RequestParam(value = "playername", required = false) String playerName,
                               Model model) {
-        if (pageNumber == null) {
+        if (pageNumber == null && Objects.equals(playerName, "")) {
             return "redirect:/matches?page=1";
         }
 
-        if (playerName == null) {
-            model.addAttribute("matches", matchDisplayService.getPageWithMatches(matchScoreDAO, pageNumber));
-        } else {
-            model.addAttribute("matches", matchDisplayService.getPageWithMatchesWithFilter(matchScoreDAO,
-                    pageNumber, playerName));
+        if (pageNumber == null) {
+            pageNumber = 1;
         }
+
+
+        model.addAttribute("matches",
+                matchDisplayService.getPageWithMatches(matchScoreDAO, pageNumber, playerName));
+
+
+        model.addAttribute("playername", playerName);
 
 
 //        model.addAttribute("matches", matchDisplayService.getPageWithMatchesWithFilter(matchScoreDAO, pageNumber, playerName));
 
 
         model.addAttribute("currentPage", pageNumber);
-        model.addAttribute("lastPageNumber", matchDisplayService.getLastPageNumber(matchScoreDAO));
+        model.addAttribute("lastPageNumber", matchDisplayService.getLastPageNumber(matchScoreDAO, playerName));
 
         return "matches";
     }
