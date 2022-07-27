@@ -10,7 +10,6 @@ public class MatchScoreCalculationService {
     }
 
     public void winPoint(Match currentMatch, int playerIdWinPoint) {
-
         if (playerIdWinPoint == currentMatch.getPlayer1().getId()) {
             currentMatch.getScore().winPointsPlayer(1,2);
         } else {

@@ -49,6 +49,7 @@ public class MatchScoreController {
             return "new_match";
         }
         model.addAttribute("uuid", matchesService.matchInitialization(matchScoreDAO, player1, player2));
+
         return "redirect:/match-score";
     }
 
@@ -91,17 +92,9 @@ public class MatchScoreController {
             pageNumber = 1;
         }
 
-
         model.addAttribute("matches",
                 matchDisplayService.getPageWithMatches(matchScoreDAO, pageNumber, playerName));
-
-
         model.addAttribute("playername", playerName);
-
-
-//        model.addAttribute("matches", matchDisplayService.getPageWithMatchesWithFilter(matchScoreDAO, pageNumber, playerName));
-
-
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("lastPageNumber", matchDisplayService.getLastPageNumber(matchScoreDAO, playerName));
 

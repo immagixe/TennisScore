@@ -1,7 +1,5 @@
 package com.tennisscoreboard.models;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -15,7 +13,7 @@ public class Player {
     @Column(name="id")
     private int id;
 
-    @Column(name="name")
+    @Column(name="player_name")
     @NotEmpty(message = "Name should not be empty")
     private String name;
 
@@ -73,13 +71,5 @@ public class Player {
 
     public void setMatchesOfWinner(List<Match> matchesOfWinner) {
         this.matchesOfWinner = matchesOfWinner;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

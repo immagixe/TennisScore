@@ -43,12 +43,6 @@ public class MatchScoreDAO {
     }
 
     @Transactional
-    public void setWinnerOfMatch(Match match, Player player) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(match);
-    }
-
-    @Transactional
     public void saveMatch(Match match) {
         Session session = sessionFactory.getCurrentSession();
         session.save(match);
@@ -64,8 +58,6 @@ public class MatchScoreDAO {
         List<Match> matches = query.list();
         return matches;
     }
-
-    //        String hql = "FROM Match m WHERE m.player1 = :name or m.player2 = :name ORDER BY id DESC";
     @Transactional(readOnly = true)
     public List<Match> getMatchesFilterByPlayerName(int firstResult, int pageSize, String filterName) {
         Session session = sessionFactory.getCurrentSession();
@@ -76,21 +68,6 @@ public class MatchScoreDAO {
         List<Match> matches = query.list();
         return matches;
     }
-
-//    @Transactional
-//    public Player findPlayerByName(String playerName) {
-//        Session session = sessionFactory.getCurrentSession();
-//        String hql = "SELECT m.player1.name, m.player2.name, m.winner.name FROM Match m JOIN Player p ON (p.id = m.winner.id) WHERE m.player1.name = :name";
-//
-//        List<Player> playerList = session.createQuery(hql).setParameter("name", playerName).getResultList();
-//        int countPlayers = playerList.size();
-//        if (countPlayers != 0) {
-//            return playerList.get(0);
-//        } else {
-//            session.save(player);
-//            return player;
-//        }
-//    }
 
     @Transactional
     public int getLastPageNumber(int pageSize) {

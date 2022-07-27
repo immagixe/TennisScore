@@ -11,7 +11,7 @@ public class Score {
 
     public Score() {
         playerNumber = 0;
-        this.playersAndMatchScore = new HashMap<>();
+        playersAndMatchScore = new HashMap<>();
         countSetsToWin = 2;
         matchEnd = false;
     }

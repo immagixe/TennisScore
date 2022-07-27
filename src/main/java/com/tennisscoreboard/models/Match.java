@@ -1,7 +1,5 @@
 package com.tennisscoreboard.models;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 
 @Entity
@@ -77,16 +75,5 @@ public class Match {
 
     public void setScore(Score score) {
         this.score = score;
-    }
-
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", player1=" + player1 +
-                ", player2=" + player2 +
-                ", winner=" + winner +
-                ", score=" + score +
-                '}';
     }
 }
