@@ -107,6 +107,6 @@ public class MatchScoreDAO {
         String hql = "SELECT COUNT(*) FROM Match WHERE player1.name= :name or player2.name= :name";
         Query countQuery = session.createQuery(hql).setParameter("name", filterName);
         Long countMatchesInDB = (Long) countQuery.uniqueResult();
-        return (int) ((countMatchesInDB / (pageSize + 1)) + 1);
+        return (int) ((countMatchesInDB / pageSize) + 1);
     }
 }

@@ -6,12 +6,12 @@
 
 .first {
     background-image: linear-gradient(134deg, #7066fa, #7066fa, #000e83);
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .container {
     width: 1200px;
-    height: 752px;
+    height: 802px;
     margin: 0 auto;
 }
 
@@ -54,6 +54,40 @@ h1 {
     font-size: 40px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
+
+.first .first_wrapper .first_item .players .forms  {
+    display: block;
+    margin: 30px auto;
+}
+
+.first .first_wrapper .first_item .players .forms .pagination {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.first .first_wrapper .first_item .players .forms .pagination .pagination_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 50px;
+    margin: 10px auto;
+    padding: 12px 35px 12px 35px;
+    background-color: #ffcf17;
+    color: #060f3f;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.first .first_wrapper .first_item .players .forms .pagination .pagination_btn .text_in {
+    text-transform: uppercase;
+    font-family: Greycliffcf, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
 
 .first .first_wrapper .first_item .players .forms .text_players {
     margin-top: 15px;
@@ -194,7 +228,7 @@ input {
     padding: 7px;
     background: #ffd300;
     border: none;
-    text-align: left;
+    text-align: center;
     font-size: 15px;
     border-top: 3px solid #fff;
     border-bottom: 3px solid #ffd300;
