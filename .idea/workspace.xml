@@ -9,8 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Change Postgresql to H2 database">
+    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Add .gitignore file">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,43 +50,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/JavaProjects/SpringWebApp&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;5f7e16ec9ea794fd68fd929e1f0a6b11&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/User/Desktop/JavaProjects/TennisScore/src/main/webapp/WEB-INF/views",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "database.query.execution",
+    "spring.configuration.checksum": "5f7e16ec9ea794fd68fd929e1f0a6b11"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;,
-      &quot;h2&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql",
+      "h2"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
-      &quot;H2&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
+      "H2"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.tennisscoreboard.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\WEB-INF\views" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\resources\img" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\WEB-INF" />
-      <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\WEB-INF\views" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\resources" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\resources" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\resources\img" />
       <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp" />
-      <recent name="C:\Users\User\Desktop\JavaProjects\TennisScore\src\main\webapp\resources\css" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.81">
@@ -100,7 +105,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 8.5.81" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.81" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="TennisScore:war exploded">
           <settings>
@@ -206,7 +211,8 @@
       <workItem from="1658318690252" duration="68290000" />
       <workItem from="1658647196552" duration="59432000" />
       <workItem from="1658911797029" duration="28728000" />
-      <workItem from="1659086367707" duration="943000" />
+      <workItem from="1659086367707" duration="3162000" />
+      <workItem from="1659258666979" duration="4305000" />
     </task>
     <task id="LOCAL-00001" summary="Add TableScoreTable classes">
       <created>1658477918123</created>
@@ -327,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658947461327</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Add .gitignore file">
+      <created>1659089824221</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1659089824222</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +403,8 @@
     <MESSAGE value="Update filter by name" />
     <MESSAGE value="Improve style.css" />
     <MESSAGE value="Change Postgresql to H2 database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change Postgresql to H2 database" />
+    <MESSAGE value="Add .gitignore file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add .gitignore file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

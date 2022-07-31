@@ -32,6 +32,11 @@ public class MatchScoreController {
         this.matchDisplayService = matchDisplayService;
     }
 
+    @GetMapping("/")
+    public String TennisScoreStartPage() {
+        return "index";
+    }
+
     @GetMapping("/new-match")
     public String newMatch(Model model) {
         model.addAttribute("player1", new Player());

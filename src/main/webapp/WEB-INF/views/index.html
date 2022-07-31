@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tennis Score Board</title>
+    <link th:href="@{resources/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<section class="first">
+    <div class="container">
+        <form th:method="GET" th:action="@{/new-match}">
+            <button class="first_btn_newgame">New Game</button>
+        </form>
+        <form th:method="GET" th:action="@{/matches}">
+            <button type="submit" class="first_btn">View matches</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
