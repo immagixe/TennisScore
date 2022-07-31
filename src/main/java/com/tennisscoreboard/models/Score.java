@@ -49,6 +49,9 @@ public class Score {
             scorePlayers.get(winPlayerNumber).set(0, 0);
             scorePlayers.get(losePlayerNumber).set(0, 0);
             winGamePlayer(winPlayerNumber, losePlayerNumber);
+        } else if (scorePlayers.get(winPlayerNumber).get(3) == 0 && scorePlayers.get(losePlayerNumber).get(3) == 1){
+            scorePlayers.get(winPlayerNumber).set(3, 0);
+            scorePlayers.get(losePlayerNumber).set(3, 0);
         } else {
             scorePlayers.get(winPlayerNumber).set(3, 1);
             scorePlayers.get(losePlayerNumber).set(3, 0);

@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Add .gitignore file">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
+    <list default="true" id="4a21fa54-3706-4769-b235-c061e8261add" name="Changes" comment="Fix scoring logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/controllers/MatchScoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tennisscoreboard/models/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +209,7 @@
       <workItem from="1658647196552" duration="59432000" />
       <workItem from="1658911797029" duration="28728000" />
       <workItem from="1659086367707" duration="3162000" />
-      <workItem from="1659258666979" duration="4305000" />
+      <workItem from="1659258666979" duration="9477000" />
     </task>
     <task id="LOCAL-00001" summary="Add TableScoreTable classes">
       <created>1658477918123</created>
@@ -340,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659089824222</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fix scoring logic">
+      <created>1659263241608</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1659263241608</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +408,8 @@
     <MESSAGE value="Improve style.css" />
     <MESSAGE value="Change Postgresql to H2 database" />
     <MESSAGE value="Add .gitignore file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add .gitignore file" />
+    <MESSAGE value="Fix scoring logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix scoring logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
